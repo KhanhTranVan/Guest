@@ -1,8 +1,6 @@
-----------------------------------------------------------------------------------------------------------------------------------------------
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
-----------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
     Title = "YTB: Zuesz",
     SubTitle = "Beta Version",
@@ -14,7 +12,6 @@ local Window = Fluent:CreateWindow({
 })
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "" }),
-    Setting = Window:AddTab({ Title = "Setting", Icon = "" }),
     Stats = Window:AddTab({ Title = "Stats", Icon = "" }),
     Player = Window:AddTab({ Title = "Player", Icon = "" }),
     Teleport = Window:AddTab({ Title = "Island", Icon = "" }),
@@ -24,15 +21,14 @@ local Tabs = {
     Shop = Window:AddTab({ Title = "Shop", Icon = "" }),
 	Misc = Window:AddTab({ Title = "Misc", Icon = "" }),
     Hop = Window:AddTab({ Title = "Hop", Icon = "" }),
+    Setting = Window:AddTab({ Title = "Setting", Icon = "" }),
 }
 local Options = Fluent.Options
 do
---------------------------------------------------------------------------------------------------------------------------------------------
---Place Id Check
+
 local id = game.PlaceId
 if id == 2753915549 then First_Sea = true; elseif id == 4442272183 then Second_Sea = true; elseif id == 7449423635 then Third_Sea = true; else game:Shutdown() end;
---------------------------------------------------------------------------------------------------------------------------------------------
---Flag Player
+
 function AntiBan()
     for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
         if v:IsA("LocalScript") then
@@ -50,15 +46,13 @@ function AntiBan()
      end
     end
     AntiBan()
---------------------------------------------------------------------------------------------------------------------------------------------
---Anti AFK
+
 game:GetService("Players").LocalPlayer.Idled:connect(function()
 	game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 	wait(1)
 	game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 end)
-------// BLOX FRUIT
---// Sea world
+
 First_Sea = false
 Second_Sea = false
 Third_Sea = false
@@ -70,7 +64,7 @@ elseif game.PlaceId == 7449423635 then
 Third_Sea = true
 end
 
---// Check Quest
+
 function CheckLevel()
 local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
 if First_Sea then
@@ -692,7 +686,6 @@ end
 end
 end
 
---// Select Monster
 if First_Sea then
 tableMon = {
   "Bandit","Monkey","Gorilla","Pirate","Brute","Desert Bandit","Desert Officer","Snow Bandit","Snowman","Chief Petty Officer","Sky Bandit","Dark Master","Prisoner", "Dangerous Prisoner","Toga Warrior","Gladiator","Military Soldier","Military Spy","Fishman Warrior","Fishman Commando","God's Guard","Shanda","Royal Squad","Royal Soldier","Galley Pirate","Galley Captain"
@@ -705,7 +698,6 @@ tableMon = {
 }
 end
 
---// Select Island
 if First_Sea then
 AreaList = {
   'Jungle', 'Buggy', 'Desert', 'Snow', 'Marine', 'Sky', 'Prison', 'Colosseum', 'Magma', 'Fishman', 'Sky Island', 'Fountain'
@@ -718,7 +710,6 @@ AreaList = {
 }
 end
 
---// Check Boss Quest
 function CheckBossQuest()
 if First_Sea then
 if SelectBoss == "The Gorilla King" then
@@ -971,7 +962,6 @@ end
 end
 end
 
---// Check Material
 function MaterialMon()
 if SelectMaterial == "Radioactive Material" then
 MMon = "Factory Staff"
@@ -1065,11 +1055,6 @@ MPos = CFrame.new(-13545,470,-6917)
 SP = "Default"
 end
 end
-
-
-
-
----------------------Esp
 
 function UpdateIslandESP() 
     for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].Locations:GetChildren()) do
@@ -1968,8 +1953,6 @@ for i,v in pairs(game:GetService("Workspace").Map.MysticIsland:GetChildren()) do
     end)
 end
 end
---------------------------------------------------------------------------------------------------------------------------------------------
----------Tween
 
   function Tween2(P1)
     local Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
@@ -1989,8 +1972,6 @@ end
     _G.Clip2 = false
     end
    
--- [Function (Abandoned Quest , Others)]
-
 function Com(com,...)
 	local Remote = game:GetService('ReplicatedStorage').Remotes:FindFirstChild("Comm"..com)
 	if Remote:IsA("RemoteEvent") then
@@ -2000,7 +1981,6 @@ function Com(com,...)
 	end
 end
 
---BTP
 function BTP(Position)
 	game.Players.LocalPlayer.Character.Head:Destroy()
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Position
@@ -2008,13 +1988,13 @@ function BTP(Position)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Position
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
 end
---BTPZ
+
 function BTPZ(Point)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Point
     task.wait()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Point
         end
-------Bypass TP 2
+
  function GetIsLand(...)
 	local RealtargetPos = {...}
 	local targetPos = RealtargetPos[1]
@@ -2064,9 +2044,9 @@ end
     local Distance = (RealTarget.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position)
         .Magnitude
     if Distance < 1000 then
-        Speed = 315
+        Speed = 320
     elseif Distance >= 1000 then
-        Speed = 300
+        Speed = 290
     end
     if BypassTP then
         if Distance > 3000 and not AutoNextIsland and not (game.Players.LocalPlayer.Backpack:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Character:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Sweet Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Sweet Chalice")) and not (Name == "Fishman Commando" or Name == "Fishman Warrior") then
@@ -2120,8 +2100,6 @@ end
     return tweenfunc
 end
 
-------
-
 function Tween(Pos)
     Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
     if game.Players.LocalPlayer.Character.Humanoid.Sit == true then game.Players.LocalPlayer.Character.Humanoid.Sit = false end
@@ -2136,9 +2114,6 @@ function Tween(Pos)
         _G.Clip = false
     end
 end
-
-
----------
 
 function toTargetP(CFgo)
 	if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health <= 0 or not game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid") then tween:Cancel() repeat wait() until game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid") and game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health > 0 wait(7) return end
@@ -2165,7 +2140,6 @@ function toTargetP(CFgo)
 	return tweenfunc
 end
 
-    --function TP to Boat/Ship
     function TweenShip(CFgo)
         local tween_s = game:service"TweenService"
         local info = TweenInfo.new((game:GetService("Workspace").Boats.MarineBrigade.VehicleSeat.CFrame.Position - CFgo.Position).Magnitude/300, Enum.EasingStyle.Linear)
@@ -2197,7 +2171,6 @@ end
         return tweenfunc
     end
 
---select weapon
 function EquipTool(ToolSe)
 		if game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe) then
 			local tool = game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe)
@@ -2205,8 +2178,6 @@ function EquipTool(ToolSe)
 			game.Players.LocalPlayer.Character.Humanoid:EquipTool(tool)
 		end
 	end
-    
-    --aimbot mastery
 
 	spawn(function()
 		local gg = getrawmetatable(game)
@@ -2234,7 +2205,7 @@ function EquipTool(ToolSe)
 		  return old(...)
 		  end)
         end)
---Equip Gun
+
 spawn(function()
   pcall(function()
     while task.wait() do
@@ -2249,7 +2220,7 @@ spawn(function()
     end)
   end)
 
--- [Body Gyro]
+
    spawn(function()
 			while task.wait() do
 				pcall(function()
@@ -2269,7 +2240,7 @@ spawn(function()
 		end)
 
 	
---No CLip Auto Farm
+
 spawn(function()
   pcall(function()
     game:GetService("RunService").Stepped:Connect(function()
@@ -2285,7 +2256,7 @@ spawn(function()
   end)
 
 
---Check Material
+
 function CheckMaterial(matname)
 for i,v in pairs(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventory")) do
 if type(v) == "table" then
@@ -2299,8 +2270,6 @@ end
 return 0
 end
 
------------------------------------------------------------------------------------------------------------------------------------------------
-------AttackNoCD    
 local plr = game.Players.LocalPlayer
 	local CbFw = getupvalues(require(plr.PlayerScripts.CombatFramework))
 	local CbFw2 = CbFw[2]
@@ -2364,9 +2333,6 @@ local plr = game.Players.LocalPlayer
     end
 
 
-
-
---Attack Mastery
     function NormalAttack()
         if not _G.NormalAttack then
             local Module = require(game.Players.LocalPlayer.PlayerScripts.CombatFramework)
@@ -2381,9 +2347,7 @@ local plr = game.Players.LocalPlayer
         end
     end
 
---------------------------------------------------------------------------------------------------------------------------------------------
 
---Sword Weapon
 function GetWeaponInventory(Weaponname)
 for i,v in pairs(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventory")) do
 if type(v) == "table" then
@@ -2397,7 +2361,6 @@ end
 return false
 end
 
----Method Farm
 Type1 = 1
 spawn(function()
     while wait(.1) do
@@ -2425,13 +2388,11 @@ spawn(function()
         wait(1)
     end
 end)
---auto turn haki
   function AutoHaki()
     if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("HasBuso") then
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
     end
 end
----Bypass Teleport
 function to(P)
 	repeat wait(0.5)
 		game.Players.LocalPlayer.Character.Humanoid:ChangeState(15)
@@ -2480,9 +2441,6 @@ function to(p)
 			end
 		end)
 	end
-
---------------------------------------------------------------------------------------------------------------------------------------------
----Close UI
 local ScreenGui = Instance.new("ScreenGui")
 local ImageButton = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
@@ -2500,18 +2458,14 @@ ImageButton.Image = "rbxassetid://16137232629"
 ImageButton.MouseButton1Down:connect(function()
     game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.End,false,game)
 end)
---------------------------------------------------------------------------------------------------------------------------------------------
---Remove Effect
+
 if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
 	game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
 end
 if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn") then
 	game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
 end
---------------------------------------------------------------------------------------------------------------------------------------------
--- Hehe
---------------------------------------------------------------------------------------------------------------------------------------------
---Create Tabs
+
 local Farming = Tabs.Main:AddSection("Farming")
 local listfastattack = {'Normal Attack','Fast Attack','Super Fast Attack'}
 
@@ -2695,8 +2649,6 @@ end)
 				  end
 			  end)
 
---------------------------------------------------------------------------------------------------------------------------------------------
-
     local ToggleMobAura = Tabs.Main:AddToggle("ToggleMobAura", {
         Title = "Đánh Quái Ở Gần",
         Description = "",
@@ -2782,9 +2734,6 @@ end)
         end
         end)
 
-
---------------------------------------------------------------------------------------------------------------------------------------------
-
 game:GetService('RunService').RenderStepped:connect(function()           
     if _G.chestsea3 then
    if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("God's Chalice") then 
@@ -2802,7 +2751,7 @@ end
 end
 end
 end)
-if game.PlaceId == 7449423635 then -- sea3
+if game.PlaceId == 7449423635 then
 spawn(function()
    while task.wait(3.5) do
        pcall(function()
@@ -2835,7 +2784,7 @@ end
 end
 end
 end)
-if game.PlaceId == 4442272183 then -- sea2
+if game.PlaceId == 4442272183 then 
 spawn(function()
    while task.wait(3.5) do
        pcall(function()
@@ -2913,8 +2862,6 @@ spawn(function()
 	end
 end)
 
-----------------------------------------------------------------------------------------------------------------------------------------------
-
       Tabs.Main:AddButton({
         Title = "Nhập Hết Code",
         Description = "",
@@ -2977,8 +2924,6 @@ end)
         end
     end
 
---------------------------------------------------------------------------------------------------------------------------------------------
---Mastery
 local Mastery = Tabs.Main:AddSection("Mastery Farm")
     local DropdownMastery = Tabs.Main:AddDropdown("DropdownMastery", {
         Title = "Chọn Chế Độ Cày Thông Thạo",
@@ -3124,7 +3069,7 @@ spawn(function()
       end
       end
       end)
----------Near Mas
+
     elseif AutoFarmMasDevilFruit and TypeMastery == 'Near Mobs' then
     pcall(function()
       for i,v in pairs (game.Workspace.Enemies:GetChildren()) do
@@ -3144,8 +3089,6 @@ spawn(function()
       v.Humanoid.JumpPower = 0
       v.Humanoid.WalkSpeed = 0
       v.HumanoidRootPart.CanCollide = false
-  --v.Humanoid:ChangeState(11)
-  --v.Humanoid:ChangeState(14)
       FarmPos = v.HumanoidRootPart.CFrame
       MonFarm = v.Name
       
@@ -3532,7 +3475,7 @@ local boss = Tabs.Main:AddSection("Farm Boss")
       end)
 
       if Third_Sea then
-      local RoughSea = Tabs.Main:AddSection("🦊 Kitsune 🦊")
+      local RoughSea = Tabs.Main:AddSection(" Kitsune ")
 
 
       local ToggleEspKitsune = Tabs.Main:AddToggle("ToggleEspKitsune", {Title = "Định vị Đảo kisune",Description = "", Default = false })
@@ -3945,7 +3888,7 @@ spawn(function()
                         game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
                         for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                             if v:IsA("Tool") then
-                                if v.ToolTip == "Melee" then -- "Blox Fruit" , "Sword" , "Wear" , "Agility"
+                                if v.ToolTip == "Melee" then
                                     game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
                                 end
                             end
@@ -3962,7 +3905,7 @@ spawn(function()
                         game:GetService("VirtualInputManager"):SendKeyEvent(false,"C",false,game.Players.LocalPlayer.Character.HumanoidRootPart)
                         for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                             if v:IsA("Tool") then
-                                if v.ToolTip == "Blox Fruit" then -- "Blox Fruit" , "Sword" , "Wear" , "Agility"
+                                if v.ToolTip == "Blox Fruit" then
                                     game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
                                 end
                             end
@@ -3981,7 +3924,7 @@ spawn(function()
                         wait(0.6)
                         for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                             if v:IsA("Tool") then
-                                if v.ToolTip == "Sword" then -- "Blox Fruit" , "Sword" , "Wear" , "Agility"
+                                if v.ToolTip == "Sword" then
                                     game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
                                 end
                             end
@@ -3997,7 +3940,7 @@ spawn(function()
                         wait(0.5)
                         for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                             if v:IsA("Tool") then
-                                if v.ToolTip == "Gun" then -- "Blox Fruit" , "Sword" , "Wear" , "Agility"
+                                if v.ToolTip == "Gun" then 
                                     game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
                                 end
                             end
@@ -4331,7 +4274,7 @@ end)
 
  Options.ToggleMirage:SetValue(false)
 
- local AutoW = Tabs.Main:AddToggle("AutoW", {Title = "Nhấn Phím W"",Description = ", Default = false })
+ local AutoW = Tabs.Main:AddToggle("AutoW", {Title = "Nhấn Phím W"",Description = "", Default = false })
  AutoW:OnChanged(function(Value)
     _G.AutoW = Value
      end)
@@ -4371,7 +4314,6 @@ if Third_Sea then
                                     toTarget(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
                                     v.HumanoidRootPart.Transparency = 1
                                     sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
-									--Click
                                 until v.Humanoid.Health <= 0 or AutoHallowSycthe == false
                             end
                         end
@@ -4671,210 +4613,6 @@ if Second_Sea then
     end)
 end
 
-
-
-
---------------------------------------------------------------------------------------------------------------------------------------------
---Setting
-local SettingFarm = Tabs.Setting:AddSection("Farming")
-
-
-    local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Gom Quái",Description = "", Default = true })
-    ToggleBringMob:OnChanged(function(Value)
-        _G.BringMob = Value
-    end)
-    Options.ToggleBringMob:SetValue(true)
-            task.spawn(function()
-                while task.wait() do
-             if _G.BringMob and bringmob then
-            pcall(function()
-                for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                if v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 350 then
-                if InMyNetWork(v.HumanoidRootPart) then
-                v.HumanoidRootPart.CFrame = FarmPos
-                v.Humanoid.JumpPower = 0
-                v.Humanoid.WalkSpeed = 0
-                v.HumanoidRootPart.Size = Vector3.new(60,60,60)
-                v.HumanoidRootPart.CanCollide = false
-                v.Head.CanCollide = false
-                if v.Humanoid:FindFirstChild("Animator") then
-                v.Humanoid.Animator:Destroy()
-                end
-                end
-                end
-                end
-                end)
-              end
-              end
-              end)
-            
-            task.spawn(function()
-              while true do wait()
-              if setscriptable then
-              setscriptable(game.Players.LocalPlayer,"SimulationRadius",true)
-              end
-              if sethiddenproperty then
-              sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
-              end
-              end
-              end)
-            
-            function InMyNetWork(object)
-            if isnetworkowner then
-            return isnetworkowner(object)
-            else
-              if (object.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 350 then
-            return true
-            end
-            return false
-            end
-            end
-            
-
-    local ToggleBypassTP = Tabs.Setting:AddToggle("ToggleBypassTP", {Title = "Di Chuyển Dạng Reset",Description = "", Default = false })
-    ToggleBypassTP:OnChanged(function(Value)
-        BypassTP = Value
-    end)
-    Options.ToggleBypassTP:SetValue(false)
-
-
-local ToggleRemove = Tabs.Setting:AddToggle("ToggleRemove", {Title = "Ẩn Dame Đánh Quái",Description = "", Default = true })
-ToggleRemove:OnChanged(function(Value)
-    _G.RemoveDameText = Value
-    end)
-    Options.ToggleRemove:SetValue(true)
-
-    spawn(function()
-        while wait() do
-            if _G.RemoveDameText then
-                game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = false
-            else
-                game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = true
-            end
-        end
-        end)
-
-        
-local ToggleRemoveNotify = Tabs.Setting:AddToggle("ToggleRemoveNotify", {Title = "Xoá Hết Thông báo",Description = "", Default = false })
-ToggleRemoveNotify:OnChanged(function(Value)
-    RemoveNotify = Value
-    end)
-    Options.ToggleRemoveNotify:SetValue(false)
-
-    spawn(function()
-        while wait() do
-            if RemoveNotify then
-                game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = false
-            else
-                game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = true
-            end
-        end
-    end)
-
-
-
-    local ToggleWhite = Tabs.Setting:AddToggle("ToggleWhite", {Title = "Màn hình Trắng (giảm lag)",Description = "", Default = false })
-    ToggleWhite:OnChanged(function(Value)
-       _G.WhiteScreen = Value
-       if _G.WhiteScreen == true then
-        game:GetService("RunService"):Set3dRenderingEnabled(false)
-    elseif _G.WhiteScreen == false then
-        game:GetService("RunService"):Set3dRenderingEnabled(true)
-            end
-        end)
-        Options.ToggleWhite:SetValue(false)
-      
-
-
-        local SKill = Tabs.Setting:AddSection("Skill Mastery")
-local ToggleZ = Tabs.Setting:AddToggle("ToggleZ", {Title = "Kĩ Năng Z",Description = "", Default = true })
-ToggleZ:OnChanged(function(Value)
-    SkillZ = Value
-end)
-Options.ToggleZ:SetValue(true)
-
-local ToggleX = Tabs.Setting:AddToggle("ToggleX", {Title = "Kĩ Năng X", Description = "",Default = true })
-ToggleX:OnChanged(function(Value)
-    SkillX = Value
-end)
-Options.ToggleX:SetValue(true)
-
-
-local ToggleC = Tabs.Setting:AddToggle("ToggleC", {Title = "Kĩ Năng C",Description = "", Default = true })
-ToggleC:OnChanged(function(Value)
-    SkillC = Value
-end)
-Options.ToggleC:SetValue(true)
-
-
-local ToggleV = Tabs.Setting:AddToggle("ToggleV", {Title = "",Description = "", Default = true })
-ToggleV:OnChanged(function(Value)
-    SkillV = Value
-end)
-Options.ToggleV:SetValue(true)
-
-
-local ToggleF = Tabs.Setting:AddToggle("ToggleF", {Title = "Kĩ Năng F",Description = "", Default = false })
-ToggleF:OnChanged(function(Value)
-   SkillF = Value
-    end)
-Options.ToggleF:SetValue(false)
-
-
-local Pos = Tabs.Setting:AddSection("Khoảng Cách Farm")
-
-local SliderPosX = Tabs.Setting:AddSlider("SliderPosX", {
-    Title = "Hướng X",
-    Description = "",
-    Default = 0,
-    Min = -60,
-    Max = 60,
-    Rounding = 1,
-    Callback = function(Value)
-      posX = Value
-    end
-})
-SliderPosX:OnChanged(function(Value)
-  posX = Value
-end)
-SliderPosX:SetValue(0)
-
-local SliderPosY = Tabs.Setting:AddSlider("SliderPosY", {
-    Title = "Hướng Y",
-    Description = "",
-    Default = 30,
-    Min = -60,
-    Max = 60,
-    Rounding = 1,
-    Callback = function(Value)
-      posY = Value
-    end
-})
-SliderPosY:OnChanged(function(Value)
-  posY = Value
-end)
-SliderPosY:SetValue(30)
-
-local SliderPosZ = Tabs.Setting:AddSlider("SliderPosZ", {
-    Title = "Hướng Z",
-    Description = "",
-    Default = 0,
-    Min = -60,
-    Max = 60,
-    Rounding = 1,
-    Callback = function(Value)
-      posZ = Value
-    end
-})
-SliderPosZ:OnChanged(function(Value)
-     posZ = Value
-end)
-SliderPosZ:SetValue(0)
-
---------------------------------------------------------------------------------------------------------------------------------------------
-
-
---Stats
 local ToggleMelee = Tabs.Stats:AddToggle("ToggleMelee", {Title = "Nâng Melee",Description = "", Default = false })
 ToggleMelee:OnChanged(function(Value)
     _G.Auto_Stats_Melee = Value
@@ -4984,8 +4722,6 @@ spawn(function()
         end
     end
 end)
---------------------------------------------------------------------------------------------------------------------------------------------
---Player
 
 local Playerslist = {}
 for i,v in pairs(game:GetService("Players"):GetChildren()) do
@@ -5225,9 +4961,6 @@ game:GetService("RunService").Stepped:Connect(function()
     end
 end)
 
-
-
---------------------------------------------------------------------------------------------------------------------------------------------
 local Mastery = Tabs.Player:AddSection("Khác")
 
 
@@ -5341,8 +5074,6 @@ spawn(function()
   end)
 end)
 
------------------------------------------------------------------------------------------------------------------------------------------------
---Teleport
 local Teleport = Tabs.Teleport:AddSection("Dịch Chuyển Thế Giới")
 
 Tabs.Teleport:AddButton({
@@ -5833,17 +5564,6 @@ spawn(function()
     end
 end)
 
-
-
-
-
-
-
---------------------------------------------------------------------------------------------------------------------------------------------
---Raid
-
-
-
 local Chips = {"Flame","Ice","Quake","Light","Dark","Spider","Rumble","Magma","Buddha","Sand","Phoenix","Dough"}
 
 local DropdownRaid = Tabs.Raid:AddDropdown("DropdownRaid", {
@@ -6204,10 +5924,6 @@ spawn(function()
     end)
 end)
 
---------------------------------------------------------------------------------------------------------------------------------------------
---RaceV4
-
-
 Tabs.Race:AddButton({
     Title = "Đền Thờ",
     Description = "",
@@ -6468,9 +6184,6 @@ while wait() do
 end
 end)
 
---------------------------------------------------------------------------------------------------------------------------------------------
---shop
-
 local ToggleRandomBone = Tabs.Shop:AddToggle("ToggleRandomBone", {Title = "Đổi xương",Description = "", Default = false })
 ToggleRandomBone:OnChanged(function(Value)  
 		_G.AutoRandomBone = Value
@@ -6626,11 +6339,6 @@ Tabs.Shop:AddButton({
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Reroll","2")
 	end
 })
-
-
-
---------------------------------------------------------------------------------------------------------------------------------------------
---misc
 
 Tabs.Misc:AddButton({
 	Title = "tham gia lại máy chủ",
@@ -7057,9 +6765,6 @@ function NoFog()
     end
 end
 
---------------------------------------------------------------------------------------------------------------------------------------------
---Hop
-
 if First_Sea or Second_Sea then
     local Mastery = Tabs.Hop:AddSection("Sea 3 làm ơn!!!")
 end
@@ -7129,13 +6834,198 @@ spawn(function()
     end
 end)
 end
-----------------------------------------------------------------------------------------------------------------------------------------------
-InterfaceManager:SetFolder("ZueszYTBScriptHub")
-SaveManager:SetFolder("ZueszYTBScriptHub/Blox-Fruit")
-Window:SelectTab(1)
-Fluent:Notify({
-    Title = "YTB: Zuesz Hub",
-    Content = "Con Me May Bel!",
-    Duration = 4
+
+local SettingFarm = Tabs.Setting:AddSection("Farming")
+
+
+    local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Gom Quái",Description = "", Default = true })
+    ToggleBringMob:OnChanged(function(Value)
+        _G.BringMob = Value
+    end)
+    Options.ToggleBringMob:SetValue(true)
+            task.spawn(function()
+                while task.wait() do
+             if _G.BringMob and bringmob then
+            pcall(function()
+                for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+                if v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 350 then
+                if InMyNetWork(v.HumanoidRootPart) then
+                v.HumanoidRootPart.CFrame = FarmPos
+                v.Humanoid.JumpPower = 0
+                v.Humanoid.WalkSpeed = 0
+                v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+                v.HumanoidRootPart.CanCollide = false
+                v.Head.CanCollide = false
+                if v.Humanoid:FindFirstChild("Animator") then
+                v.Humanoid.Animator:Destroy()
+                end
+                end
+                end
+                end
+                end)
+              end
+              end
+              end)
+            
+            task.spawn(function()
+              while true do wait()
+              if setscriptable then
+              setscriptable(game.Players.LocalPlayer,"SimulationRadius",true)
+              end
+              if sethiddenproperty then
+              sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+              end
+              end
+              end)
+            
+            function InMyNetWork(object)
+            if isnetworkowner then
+            return isnetworkowner(object)
+            else
+              if (object.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 350 then
+            return true
+            end
+            return false
+            end
+            end
+            
+
+    local ToggleBypassTP = Tabs.Setting:AddToggle("ToggleBypassTP", {Title = "Di Chuyển Dạng Reset",Description = "", Default = false })
+    ToggleBypassTP:OnChanged(function(Value)
+        BypassTP = Value
+    end)
+    Options.ToggleBypassTP:SetValue(false)
+
+
+local ToggleRemove = Tabs.Setting:AddToggle("ToggleRemove", {Title = "Ẩn Dame Đánh Quái",Description = "", Default = true })
+ToggleRemove:OnChanged(function(Value)
+    _G.RemoveDameText = Value
+    end)
+    Options.ToggleRemove:SetValue(true)
+
+    spawn(function()
+        while wait() do
+            if _G.RemoveDameText then
+                game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = false
+            else
+                game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = true
+            end
+        end
+        end)
+
+        
+local ToggleRemoveNotify = Tabs.Setting:AddToggle("ToggleRemoveNotify", {Title = "Xoá Hết Thông báo",Description = "", Default = false })
+ToggleRemoveNotify:OnChanged(function(Value)
+    RemoveNotify = Value
+    end)
+    Options.ToggleRemoveNotify:SetValue(false)
+
+    spawn(function()
+        while wait() do
+            if RemoveNotify then
+                game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = false
+            else
+                game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = true
+            end
+        end
+    end)
+
+
+
+    local ToggleWhite = Tabs.Setting:AddToggle("ToggleWhite", {Title = "Màn hình Trắng (giảm lag)",Description = "", Default = false })
+    ToggleWhite:OnChanged(function(Value)
+       _G.WhiteScreen = Value
+       if _G.WhiteScreen == true then
+        game:GetService("RunService"):Set3dRenderingEnabled(false)
+    elseif _G.WhiteScreen == false then
+        game:GetService("RunService"):Set3dRenderingEnabled(true)
+            end
+        end)
+        Options.ToggleWhite:SetValue(false)
+      
+
+
+        local SKill = Tabs.Setting:AddSection("Skill Mastery")
+local ToggleZ = Tabs.Setting:AddToggle("ToggleZ", {Title = "Kĩ Năng Z",Description = "", Default = true })
+ToggleZ:OnChanged(function(Value)
+    SkillZ = Value
+end)
+Options.ToggleZ:SetValue(true)
+
+local ToggleX = Tabs.Setting:AddToggle("ToggleX", {Title = "Kĩ Năng X", Description = "",Default = true })
+ToggleX:OnChanged(function(Value)
+    SkillX = Value
+end)
+Options.ToggleX:SetValue(true)
+
+
+local ToggleC = Tabs.Setting:AddToggle("ToggleC", {Title = "Kĩ Năng C",Description = "", Default = true })
+ToggleC:OnChanged(function(Value)
+    SkillC = Value
+end)
+Options.ToggleC:SetValue(true)
+
+
+local ToggleV = Tabs.Setting:AddToggle("ToggleV", {Title = "",Description = "", Default = true })
+ToggleV:OnChanged(function(Value)
+    SkillV = Value
+end)
+Options.ToggleV:SetValue(true)
+
+
+local ToggleF = Tabs.Setting:AddToggle("ToggleF", {Title = "Kĩ Năng F",Description = "", Default = false })
+ToggleF:OnChanged(function(Value)
+   SkillF = Value
+    end)
+Options.ToggleF:SetValue(false)
+
+
+local Pos = Tabs.Setting:AddSection("Khoảng Cách Farm")
+
+local SliderPosX = Tabs.Setting:AddSlider("SliderPosX", {
+    Title = "Hướng X",
+    Description = "",
+    Default = 0,
+    Min = -60,
+    Max = 60,
+    Rounding = 1,
+    Callback = function(Value)
+      posX = Value
+    end
 })
-SaveManager:LoadAutoloadConfig()
+SliderPosX:OnChanged(function(Value)
+  posX = Value
+end)
+SliderPosX:SetValue(0)
+
+local SliderPosY = Tabs.Setting:AddSlider("SliderPosY", {
+    Title = "Hướng Y",
+    Description = "",
+    Default = 30,
+    Min = -60,
+    Max = 60,
+    Rounding = 1,
+    Callback = function(Value)
+      posY = Value
+    end
+})
+SliderPosY:OnChanged(function(Value)
+  posY = Value
+end)
+SliderPosY:SetValue(30)
+
+local SliderPosZ = Tabs.Setting:AddSlider("SliderPosZ", {
+    Title = "Hướng Z",
+    Description = "",
+    Default = 0,
+    Min = -60,
+    Max = 60,
+    Rounding = 1,
+    Callback = function(Value)
+      posZ = Value
+    end
+})
+SliderPosZ:OnChanged(function(Value)
+     posZ = Value
+end)
+SliderPosZ:SetValue(0)
