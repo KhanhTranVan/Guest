@@ -4274,7 +4274,7 @@ end)
 
  Options.ToggleMirage:SetValue(false)
 
- local AutoW = Tabs.Main:AddToggle("AutoW", {Title = "Nhấn Phím W"",Description = "", Default = false })
+ local AutoW = Tabs.Main:AddToggle("AutoW", {Title = "Nhấn Phím W",Description = "", Default = false })
  AutoW:OnChanged(function(Value)
     _G.AutoW = Value
      end)
